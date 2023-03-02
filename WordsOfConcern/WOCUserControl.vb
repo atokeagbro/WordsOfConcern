@@ -64,6 +64,9 @@ Public Class WOCUserControl
                 If Globals.ThisAddIn.Application.ActiveDocument.Bookmarks.Exists(bookmarkName) Then
                     Dim range As Word.Range = Globals.ThisAddIn.Application.ActiveDocument.Range
                     range.GoTo(WdGoToItem.wdGoToBookmark, , , bookmarkName)
+
+                    Dim bookmarkRange As Word.Range = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks(bookmarkName).Range
+                    bookmarkRange.Select()
                 End If
             End If
             End If
@@ -93,6 +96,9 @@ Public Class WOCUserControl
                 If Globals.ThisAddIn.Application.ActiveDocument.Bookmarks.Exists(bookmarkName) Then
                     Dim range As Word.Range = Globals.ThisAddIn.Application.ActiveDocument.Range
                     range.GoTo(WdGoToItem.wdGoToBookmark, , , bookmarkName)
+
+                    Dim bookmarkRange As Word.Range = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks(bookmarkName).Range
+                    bookmarkRange.Select()
                 End If
             End If
             End If
