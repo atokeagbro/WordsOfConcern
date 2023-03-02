@@ -2,12 +2,14 @@
 Imports Microsoft.Office.Interop.Word
 Imports System.Windows.Forms
 Imports System.Drawing
+Imports System.Windows.Media.Animation
 
 Public Class WOCUserControl
 
 
     Private Sub btnUpdateWoCList_Click(sender As Object, e As EventArgs) Handles btnUpdateWoCList.Click
         MDataManager.LoadSourceGrid(dgvCurrent:=dgvWOCList)
+        lvMatched.Items.Clear()
     End Sub
 
 
@@ -59,10 +61,12 @@ Public Class WOCUserControl
                 Dim bookmarkName As String = lvMatched.Items(selectedIndex - 1).SubItems(1).Text
 
                 ' Select the bookmark in the Word document
-                Dim range As Word.Range = Globals.ThisAddIn.Application.ActiveDocument.Range
-                range.GoTo(WdGoToItem.wdGoToBookmark, , , bookmarkName)
+                If Globals.ThisAddIn.Application.ActiveDocument.Bookmarks.Exists(bookmarkName) Then
+                    Dim range As Word.Range = Globals.ThisAddIn.Application.ActiveDocument.Range
+                    range.GoTo(WdGoToItem.wdGoToBookmark, , , bookmarkName)
+                End If
             End If
-        End If
+            End If
     End Sub
 
     Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
@@ -86,12 +90,19 @@ Public Class WOCUserControl
                 Dim bookmarkName As String = lvMatched.Items(selectedIndex + 1).SubItems(1).Text
 
                 ' Select the bookmark in the Word document
-                Dim range As Word.Range = Globals.ThisAddIn.Application.ActiveDocument.Range
-                range.GoTo(WdGoToItem.wdGoToBookmark, , , bookmarkName)
+                If Globals.ThisAddIn.Application.ActiveDocument.Bookmarks.Exists(bookmarkName) Then
+                    Dim range As Word.Range = Globals.ThisAddIn.Application.ActiveDocument.Range
+                    range.GoTo(WdGoToItem.wdGoToBookmark, , , bookmarkName)
+                End If
             End If
-        End If
+            End If
     End Sub
 
-
-
+    Private Sub WOCUserControl_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        If Me.Visible Then
+            ' Call your function here.
+            MDataManager.LoadSourceGrid(dgvCurrent:=dgvWOCList)
+            lvMatched.Items.Clear()
+        End If
+    End Sub
 End Class

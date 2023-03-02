@@ -4,6 +4,7 @@ Imports System.Windows.Forms
 Imports System.Xml
 Imports System.Data.Linq
 Imports Microsoft.Office.Interop.Word
+Imports System.Security.Cryptography
 
 Module MSearchManager
 
@@ -22,6 +23,8 @@ Module MSearchManager
 
             ' Generate temporary bookmark names based on the search text
             Dim bookmarkNameRegex As New Regex("[^\w\d]") ' Regular expression to remove non-alphanumeric characters
+
+            range.Find.MatchCase = False
 
             Do While range.Find.Execute(FindText:=word)
                 ' Highlight the found word
