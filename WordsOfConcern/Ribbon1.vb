@@ -1,4 +1,6 @@
-﻿Imports Microsoft.Office.Tools.Ribbon
+﻿Imports System.IO
+Imports System.Windows.Forms
+Imports Microsoft.Office.Tools.Ribbon
 
 Public Class rbnWordOfConcern
 
@@ -17,6 +19,9 @@ Public Class rbnWordOfConcern
         ' Show the task pane
         myTaskPane.Visible = True
 
+
     End Sub
+
+
 
 End Class

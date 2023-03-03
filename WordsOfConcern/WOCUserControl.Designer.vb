@@ -35,6 +35,7 @@ Partial Class WOCUserControl
         Me.tpMatched = New System.Windows.Forms.TabPage()
         Me.dgvWOCList = New System.Windows.Forms.DataGridView()
         Me.btnClear = New System.Windows.Forms.Button()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.TabControlMain.SuspendLayout()
         Me.tpWOC.SuspendLayout()
         Me.tpMatched.SuspendLayout()
@@ -61,9 +62,9 @@ Partial Class WOCUserControl
         '
         'btnUpdateWoCList
         '
-        Me.btnUpdateWoCList.Location = New System.Drawing.Point(177, 12)
+        Me.btnUpdateWoCList.Location = New System.Drawing.Point(177, 11)
         Me.btnUpdateWoCList.Name = "btnUpdateWoCList"
-        Me.btnUpdateWoCList.Size = New System.Drawing.Size(116, 23)
+        Me.btnUpdateWoCList.Size = New System.Drawing.Size(85, 23)
         Me.btnUpdateWoCList.TabIndex = 4
         Me.btnUpdateWoCList.Text = "Refresh List"
         Me.btnUpdateWoCList.UseVisualStyleBackColor = True
@@ -157,6 +158,11 @@ Partial Class WOCUserControl
         Me.btnClear.Text = "Clear"
         Me.btnClear.UseVisualStyleBackColor = True
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        Me.OpenFileDialog1.Filter = "CSV files (*.csv)|*.csv"
+        '
         'WOCUserControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -191,4 +197,5 @@ Partial Class WOCUserControl
     Friend WithEvents lvMatched As Windows.Forms.ListView
     Friend WithEvents colHdrMatched As Windows.Forms.ColumnHeader
     Friend WithEvents colHdrBookMark As Windows.Forms.ColumnHeader
+    Friend WithEvents OpenFileDialog1 As Windows.Forms.OpenFileDialog
 End Class

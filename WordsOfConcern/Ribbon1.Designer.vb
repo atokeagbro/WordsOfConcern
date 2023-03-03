@@ -80,7 +80,7 @@
         '
         Me.btnOpenTaskPane.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
         Me.btnOpenTaskPane.Image = CType(resources.GetObject("btnOpenTaskPane.Image"), System.Drawing.Image)
-        Me.btnOpenTaskPane.Label = "Open Task Pane"
+        Me.btnOpenTaskPane.Label = "Open WoC Task Pane"
         Me.btnOpenTaskPane.Name = "btnOpenTaskPane"
         Me.btnOpenTaskPane.ShowImage = True
         '

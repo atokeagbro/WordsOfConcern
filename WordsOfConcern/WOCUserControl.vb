@@ -3,21 +3,15 @@ Imports Microsoft.Office.Interop.Word
 Imports System.Windows.Forms
 Imports System.Drawing
 Imports System.Windows.Media.Animation
+Imports System.IO
+Imports System.Collections.Specialized
 
 Public Class WOCUserControl
-
-
-    Private Sub btnUpdateWoCList_Click(sender As Object, e As EventArgs) Handles btnUpdateWoCList.Click
-        MDataManager.LoadSourceGrid(dgvCurrent:=dgvWOCList)
-        lvMatched.Items.Clear()
-    End Sub
-
 
     Private Sub btnHighlight_Click(sender As Object, e As EventArgs) Handles btnHighlight.Click
         TabControlMain.SelectedIndex = 0
         Call MSearchManager.HighlightWords(wordsGrid:=dgvWOCList, color:=Word.WdColorIndex.wdYellow, highlightedWordsListView:=lvMatched)
         SelectFirstItemIfMatchesExist()
-
     End Sub
 
 
@@ -71,7 +65,7 @@ Public Class WOCUserControl
                     bookmarkRange.Select()
                 End If
             End If
-            End If
+        End If
     End Sub
 
     Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
@@ -103,15 +97,15 @@ Public Class WOCUserControl
                     bookmarkRange.Select()
                 End If
             End If
-            End If
+        End If
     End Sub
 
     Private Sub WOCUserControl_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Me.Visible Then
-            ' Call your function here.
-            MDataManager.LoadSourceGrid(dgvCurrent:=dgvWOCList)
-            lvMatched.Items.Clear()
+            MDataManager.LoadWoCGridFromSettings(dgvCurrent:=dgvWOCList)
         End If
+
+
     End Sub
 
 
@@ -130,11 +124,43 @@ Public Class WOCUserControl
         End If
     End Sub
 
-    Private Sub lvMatched_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvMatched.SelectedIndexChanged
-
-    End Sub
 
     Private Sub WOCUserControl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabControlMain.SelectedIndex = 1
+        LoadWoCGridFromSettings(dgvWOCList)
+    End Sub
+
+    Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
+        Dim stringCollection As New StringCollection()
+        Try
+
+            ' Read the selected CSV file
+            Using reader As New StreamReader(OpenFileDialog1.FileName)
+                'Read the file line by line
+                While Not reader.EndOfStream
+                    Dim line As String = reader.ReadLine()
+                    ' add the line to the StringCollection.
+                    stringCollection.Add(line)
+                End While
+
+                My.Settings.TableData.Clear()
+                My.Settings.TableData = stringCollection
+                My.Settings.Save()
+            End Using
+        Catch ex As Exception
+            ' Handle any errors that occur while reading the file
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnUpdateWoCList_Click(sender As Object, e As EventArgs) Handles btnUpdateWoCList.Click
+
+        ' Show the OpenFileDialog to select a CSV file
+        If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
+            TabControlMain.SelectedIndex = 1
+            ' The FileOk event will handle reading the file and updating the settings variable
+            MDataManager.LoadWoCGridFromSettings(dgvWOCList)
+        End If
+
     End Sub
 End Class
