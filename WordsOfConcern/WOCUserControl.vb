@@ -14,8 +14,10 @@ Public Class WOCUserControl
 
 
     Private Sub btnHighlight_Click(sender As Object, e As EventArgs) Handles btnHighlight.Click
+        TabControlMain.SelectedIndex = 0
         Call MSearchManager.HighlightWords(wordsGrid:=dgvWOCList, color:=Word.WdColorIndex.wdYellow, highlightedWordsListView:=lvMatched)
         SelectFirstItemIfMatchesExist()
+
     End Sub
 
 
@@ -110,5 +112,29 @@ Public Class WOCUserControl
             MDataManager.LoadSourceGrid(dgvCurrent:=dgvWOCList)
             lvMatched.Items.Clear()
         End If
+    End Sub
+
+
+    Private Sub lvMatches_DoubleClick(sender As Object, e As EventArgs) Handles lvMatched.DoubleClick
+        ' Get the selected item and the bookmark name in the second column.
+        Dim selectedItem As ListViewItem = lvMatched.SelectedItems(0)
+        Dim bookmarkName As String = selectedItem.SubItems(1).Text
+
+        ' Select the bookmark in the active document.
+        Dim doc As Word.Document = Globals.ThisAddIn.Application.ActiveDocument
+        If doc.Bookmarks.Exists(bookmarkName) Then
+            Dim bookmarkRange As Word.Range = doc.Bookmarks(bookmarkName).Range
+            bookmarkRange.Select()
+        Else
+            MessageBox.Show("The specified bookmark was not found.")
+        End If
+    End Sub
+
+    Private Sub lvMatched_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvMatched.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub WOCUserControl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TabControlMain.SelectedIndex = 1
     End Sub
 End Class

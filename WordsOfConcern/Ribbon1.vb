@@ -18,4 +18,5 @@ Public Class rbnWordOfConcern
         myTaskPane.Visible = True
 
     End Sub
+
 End Class

@@ -2,11 +2,13 @@
 Imports System.Data.OleDb
 Imports System.Windows.Forms
 Imports Microsoft.Office.Interop.Word
+Imports System.Xml.Serialization
 
 Module MDataManager
     Private LocalWordsOfConcern As New StringCollection()
 
-    ReadOnly mSourceFilePath As String = "C:\Users\aoa82\OneDrive - ProsperSpark\ProsperSpark\BBG\Proof of Concepts\Words of Concern Base\PhrasesOfConcern.xlsx"
+    'ReadOnly mSourceFilePath As String = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "FreddieMacPhrasesOfConcern.xlsx")
+    ReadOnly mSourceFilePath As String = "C:\Users\aoa82\OneDrive - ProsperSpark\ProsperSpark\BBG\Proof of Concepts\Words of Concern Base\FreddieMacPhrasesOfConcern.xlsx"
     ReadOnly mDBConn As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + mSourceFilePath + ";Extended Properties=Excel 12.0;"
     ReadOnly mSQLSelectData As String = "SELECT * FROM [Sheet1$]"
 
@@ -30,6 +32,14 @@ Module MDataManager
         Dim dataTable As System.Data.DataTable = dataSet.Tables(0)
         dgvCurrent.DataSource = dataTable
 
+        If dataTable IsNot Nothing Then
+            If dataTable.Rows.Count >= 1 Then
+                ' Persist the data in the application settings.
+                Dim xmlString As String = dataSet.GetXml()
+                PersistToTableData(xmlString)
+            End If
+        End If
+
     End Sub
 
     ''' <summary>
@@ -37,11 +47,11 @@ Module MDataManager
     ''' Later on if the external data is not available we can still use our last internal stored version.
     ''' </summary>
     ''' <param name="data"></param>
-    Public Sub PersistStorageData(ByRef data As String(,))
+    Private Sub PersistToTableData(ByRef data As String)
 
 
         ' Serialize the data to a string.
-        Dim serializer As New Xml.Serialization.XmlSerializer(GetType(String(,)))
+        Dim serializer As New Xml.Serialization.XmlSerializer(GetType(String))
         Dim stringWriter As New IO.StringWriter()
         serializer.Serialize(stringWriter, data)
         Dim serializedData As String = stringWriter.ToString()
@@ -76,7 +86,7 @@ Module MDataManager
     ''' Extract the Words of Concern from local persistant storage.
     ''' </summary>
     ''' <returns></returns>
-    Public Function ExtractTableFromSettings() As String(,)
+    Private Function ExtractTableFromSettings() As String(,)
         ' Retrieve the serialized data from the application settings.
         Dim serializedData As String = My.Settings.TableData
 

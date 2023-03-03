@@ -10,6 +10,13 @@ Module MSearchManager
 
     Friend msBookmarkNamePrefix As String = "bkmTemp_"
 
+    ''' <summary>
+    ''' Highlight multiple search strings adapted from.
+    ''' https://www.techrepublic.com/article/macro-trick-how-to-highlight-multiple-search-strings-in-a-word-document/#:~:text=Enter%20a%20search%20string%20in,In%20and%20click%20Find%20All.
+    ''' </summary>
+    ''' <param name="wordsGrid"></param>
+    ''' <param name="color"></param>
+    ''' <param name="highlightedWordsListView"></param>
     Friend Sub HighlightWords(ByRef wordsGrid As DataGridView, ByRef color As Word.WdColorIndex, ByRef highlightedWordsListView As ListView)
         ' Get the range of the document
         Dim range As Word.Range = Globals.ThisAddIn.Application.ActiveDocument.Content

@@ -4,6 +4,8 @@ Public Class ThisAddIn
     Private Sub ThisAddIn_Startup() Handles Me.Startup
         ' Add a handler for the DocumentBeforeClose event
         AddHandler Globals.ThisAddIn.Application.DocumentBeforeClose, AddressOf Application_DocumentBeforeClose
+
+
     End Sub
 
     Private Sub ThisAddIn_Shutdown() Handles Me.Shutdown

@@ -1,7 +1,7 @@
 ﻿Partial Class rbnWordOfConcern
     Inherits Microsoft.Office.Tools.Ribbon.RibbonBase
 
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Public Sub New(ByVal container As System.ComponentModel.IContainer)
         MyClass.New()
 
@@ -12,7 +12,7 @@
 
     End Sub
 
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Public Sub New()
         MyBase.New(Globals.Factory.GetRibbonFactory())
 
@@ -22,7 +22,7 @@
     End Sub
 
     'Component overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -39,8 +39,9 @@
     'NOTE: The following procedure is required by the Component Designer
     'It can be modified using the Component Designer.
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(rbnWordOfConcern))
         Me.Tab1 = Me.Factory.CreateRibbonTab
         Me.Group1 = Me.Factory.CreateRibbonGroup
         Me.tabWordOfConcern = Me.Factory.CreateRibbonTab
@@ -77,8 +78,11 @@
         '
         'btnOpenTaskPane
         '
+        Me.btnOpenTaskPane.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.btnOpenTaskPane.Image = CType(resources.GetObject("btnOpenTaskPane.Image"), System.Drawing.Image)
         Me.btnOpenTaskPane.Label = "Open Task Pane"
         Me.btnOpenTaskPane.Name = "btnOpenTaskPane"
+        Me.btnOpenTaskPane.ShowImage = True
         '
         'rbnWordOfConcern
         '
