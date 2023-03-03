@@ -234,7 +234,6 @@
       <DependentUpon>WOCUserControl.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="Resources\FreddieMacPhrasesOfConcern.xlsx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.vb</DependentUpon>
     </None>
@@ -265,6 +264,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

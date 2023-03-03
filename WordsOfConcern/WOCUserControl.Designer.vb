@@ -43,7 +43,7 @@ Partial Class WOCUserControl
         '
         'btnPrev
         '
-        Me.btnPrev.Location = New System.Drawing.Point(4, 131)
+        Me.btnPrev.Location = New System.Drawing.Point(4, 100)
         Me.btnPrev.Name = "btnPrev"
         Me.btnPrev.Size = New System.Drawing.Size(64, 23)
         Me.btnPrev.TabIndex = 2
@@ -52,7 +52,7 @@ Partial Class WOCUserControl
         '
         'btnNext
         '
-        Me.btnNext.Location = New System.Drawing.Point(128, 131)
+        Me.btnNext.Location = New System.Drawing.Point(128, 100)
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(64, 23)
         Me.btnNext.TabIndex = 3
@@ -61,11 +61,11 @@ Partial Class WOCUserControl
         '
         'btnUpdateWoCList
         '
-        Me.btnUpdateWoCList.Location = New System.Drawing.Point(3, 53)
+        Me.btnUpdateWoCList.Location = New System.Drawing.Point(177, 12)
         Me.btnUpdateWoCList.Name = "btnUpdateWoCList"
-        Me.btnUpdateWoCList.Size = New System.Drawing.Size(189, 23)
+        Me.btnUpdateWoCList.Size = New System.Drawing.Size(116, 23)
         Me.btnUpdateWoCList.TabIndex = 4
-        Me.btnUpdateWoCList.Text = "Update WoC List"
+        Me.btnUpdateWoCList.Text = "Refresh List"
         Me.btnUpdateWoCList.UseVisualStyleBackColor = True
         '
         'lblTitle
@@ -80,7 +80,7 @@ Partial Class WOCUserControl
         '
         'btnHighlight
         '
-        Me.btnHighlight.Location = New System.Drawing.Point(4, 92)
+        Me.btnHighlight.Location = New System.Drawing.Point(4, 59)
         Me.btnHighlight.Name = "btnHighlight"
         Me.btnHighlight.Size = New System.Drawing.Size(107, 23)
         Me.btnHighlight.TabIndex = 7
@@ -91,10 +91,10 @@ Partial Class WOCUserControl
         '
         Me.TabControlMain.Controls.Add(Me.tpWOC)
         Me.TabControlMain.Controls.Add(Me.tpMatched)
-        Me.TabControlMain.Location = New System.Drawing.Point(4, 176)
+        Me.TabControlMain.Location = New System.Drawing.Point(4, 142)
         Me.TabControlMain.Name = "TabControlMain"
         Me.TabControlMain.SelectedIndex = 0
-        Me.TabControlMain.Size = New System.Drawing.Size(363, 440)
+        Me.TabControlMain.Size = New System.Drawing.Size(363, 511)
         Me.TabControlMain.TabIndex = 8
         '
         'tpWOC
@@ -103,7 +103,7 @@ Partial Class WOCUserControl
         Me.tpWOC.Location = New System.Drawing.Point(4, 22)
         Me.tpWOC.Name = "tpWOC"
         Me.tpWOC.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpWOC.Size = New System.Drawing.Size(355, 414)
+        Me.tpWOC.Size = New System.Drawing.Size(355, 485)
         Me.tpWOC.TabIndex = 0
         Me.tpWOC.Text = "Matched Items"
         Me.tpWOC.UseVisualStyleBackColor = True
@@ -114,7 +114,7 @@ Partial Class WOCUserControl
         Me.lvMatched.HideSelection = False
         Me.lvMatched.Location = New System.Drawing.Point(6, 34)
         Me.lvMatched.Name = "lvMatched"
-        Me.lvMatched.Size = New System.Drawing.Size(336, 377)
+        Me.lvMatched.Size = New System.Drawing.Size(336, 445)
         Me.lvMatched.TabIndex = 0
         Me.lvMatched.UseCompatibleStateImageBehavior = False
         Me.lvMatched.View = System.Windows.Forms.View.Details
@@ -136,7 +136,7 @@ Partial Class WOCUserControl
         Me.tpMatched.Location = New System.Drawing.Point(4, 22)
         Me.tpMatched.Name = "tpMatched"
         Me.tpMatched.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpMatched.Size = New System.Drawing.Size(355, 414)
+        Me.tpMatched.Size = New System.Drawing.Size(355, 485)
         Me.tpMatched.TabIndex = 1
         Me.tpMatched.Text = "Words of Concern"
         '
@@ -145,12 +145,12 @@ Partial Class WOCUserControl
         Me.dgvWOCList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvWOCList.Location = New System.Drawing.Point(3, 34)
         Me.dgvWOCList.Name = "dgvWOCList"
-        Me.dgvWOCList.Size = New System.Drawing.Size(336, 377)
+        Me.dgvWOCList.Size = New System.Drawing.Size(336, 445)
         Me.dgvWOCList.TabIndex = 0
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(117, 91)
+        Me.btnClear.Location = New System.Drawing.Point(117, 59)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
         Me.btnClear.TabIndex = 9
